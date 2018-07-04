@@ -14,6 +14,9 @@ module.exports = (app) => {
   app.route('/getTitles/:deviceID')
       .get(todoController.getTitles);
 
+  app.route('/getEntries/:deviceID')
+      .get(todoController.getEntries);
+
   app.route('/getInformation/:deviceID/:title')
       .get(todoController.getInformation);
 

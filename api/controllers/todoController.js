@@ -43,6 +43,15 @@ exports.getTitles = (req, res) => {
     })
 };
 
+exports.getEntries = (req, res) => {
+    const query = todoModel.find({deviceID: req.params.deviceID}).select('title deadline description -_id');
+    query.exec((err, model) => {
+        if (err) res.send(err);
+        res.send(model);
+    })
+};
+
+
 exports.getInformation = (req, res) => {
 
     const query = todoModel.findOne({deviceID: req.params.deviceID, title: req.params.title}).select('title deadline description -_id');
