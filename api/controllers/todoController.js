@@ -63,7 +63,7 @@ exports.getInformation = (req, res) => {
 }
 
 exports.createConnectEntry = (req, res) => {
-    connectModel.find({deviceID: req.params.deviceID}).deleteMany();
+    connectModel.deleteMany({deviceID: req.params.deviceID});
 
     new connectModel(req.body)
         .save((err, model) => {
