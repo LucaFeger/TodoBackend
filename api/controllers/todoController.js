@@ -61,22 +61,3 @@ exports.getInformation = (req, res) => {
         res.send(model);
     });
 }
-
-exports.createConnectEntry = (req, res) => {
-    connectModel.remove({deviceID: req.body.deviceID}, function (err) {
-        if (err) res.send(err);
-        // deleted at most one tank document
-    });
-
-    new connectModel(req.body)
-        .save((err, model) => {
-            if (err) res.send(err);
-            res.json(model);
-        })
-}
-
-exports.checkValidaty = (req, res) => {
-    connectModel.find({deviceID: req.params.deviceID}, (err, model) => {
-        res.json({success: (model.timestamp + (1000 * 60 * 5) >= +new Date())})
-    });
-}

@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var routes = require('./api/routes/todoRoute');
 var todoModel = require('./api/models/todoModel');
-var connectModel = require('./api/models/connectModel');
 var https = require('https');
 var fs = require('fs');
 
