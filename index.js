@@ -3,9 +3,16 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var todoModel = require('./api/models/todoModel');
 var routes = require('./api/routes/todoRoute');
+var https = require('https');
+var fs = require('fs');
 
 app = express();
 port = process.env.PORT || 3000;
+
+options= {
+    key: fs.readFileSync('/etc/letsencrypt/live/lucafeger.de/privkey.pem;'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/lucafeger.de/fullchain.pem;'),
+};
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://todo:todoAdminPassword@172.17.0.2:27017/todoDatabase');
@@ -23,6 +30,6 @@ app.use((req, res, next) => {
 
 
 routes(app);
-app.listen(port);
-
-console.log('todo backend successfully started on port ' + port);
+https.createServer(options, app).listen(port, function(){
+    console.log('todo backend successfully started on port ' + port);
+});
