@@ -63,7 +63,10 @@ exports.getInformation = (req, res) => {
 }
 
 exports.createConnectEntry = (req, res) => {
-    connectModel.deleteMany({deviceID: req.params.deviceID});
+    connectModel.deleteMany({deviceID: req.params.deviceID}, function (err) {
+        if (err) res.send(err);
+        // deleted at most one tank document
+    });
 
     new connectModel(req.body)
         .save((err, model) => {
