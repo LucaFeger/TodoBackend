@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose');
 const todoModel = mongoose.model('todoModel');
-const connectModel = mongoose.model('connectModel');
 
 exports.createEntry = (req, res) => {
     console.log(req.body.toString());

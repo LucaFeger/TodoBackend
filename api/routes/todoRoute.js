@@ -19,5 +19,5 @@ module.exports = (app) => {
 
   app.route('/getInformation/:deviceID/:title')
       .get(todoController.getInformation);
-  
+
 };
