@@ -9,7 +9,7 @@ const connectSchema = new schema({
     },
     timestamp: {
         type: Number,
-        required: 'Please enter a title'
+        required: 'Please enter a timestamp'
     }
 },
     {

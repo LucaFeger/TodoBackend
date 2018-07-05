@@ -22,7 +22,7 @@ module.exports = (app) => {
 
 
   app.route('/connectOnline/:deviceID')
-      .get(todoController.createConnectEntry);
+      .post(todoController.createConnectEntry);
 
   app.route('validateConnect/:deviceID')
       .get(todoController.checkValidaty);
