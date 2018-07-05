@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const todoModel = mongoose.model('todoModel');
+const connectModel = mongoose.model('connectModel');
 
 exports.createEntry = (req, res) => {
     console.log(req.body.toString());
@@ -58,5 +59,21 @@ exports.getInformation = (req, res) => {
     query.exec((err, model) => {
         if (err) res.send(err);
         res.send(model);
+    });
+}
+
+exports.createConnectEntry = (req, res) => {
+    connectModel.find({deviceID: req.params.deviceID}).remove().exec();
+
+    new connectModel(req.body)
+        .save((err, model) => {
+            if (err) res.send(err);
+            res.json(model);
+        })
+}
+
+exports.checkValidaty = (req, res) => {
+    connectModel.find({deviceID: req.params.deviceID}, (err, model) => {
+        res.json({success: (model.timestamp + (1000 * 60 * 5) >= +new Date())})
     });
 }

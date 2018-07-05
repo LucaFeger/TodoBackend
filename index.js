@@ -1,18 +1,21 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var todoModel = require('./api/models/todoModel');
 var routes = require('./api/routes/todoRoute');
+var todoModel = require('./api/models/todoModel');
+var connectModel = require('./api/models/connectModel');
 var https = require('https');
 var fs = require('fs');
 
 app = express();
 port = process.env.PORT || 3000;
 
+
 options= {
     key: fs.readFileSync('/etc/letsencrypt/live/lucafeger.de/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/lucafeger.de/fullchain.pem'),
 };
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://todo:todoAdminPassword@172.17.0.2:27017/todoDatabase');
