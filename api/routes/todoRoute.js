@@ -21,7 +21,7 @@ module.exports = (app) => {
       .get(todoController.getInformation);
 
 
-  app.route('/connectOnline/:deviceID')
+  app.route('/connectOnline')
       .post(todoController.createConnectEntry);
 
   app.route('validateConnect/:deviceID')
