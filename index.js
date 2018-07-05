@@ -10,8 +10,8 @@ app = express();
 port = process.env.PORT || 3000;
 
 options= {
-    key: fs.readFileSync('/etc/letsencrypt/live/lucafeger.de/privkey.pem;'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/lucafeger.de/fullchain.pem;'),
+    key: fs.readFileSync('/etc/letsencrypt/live/lucafeger.de/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/lucafeger.de/fullchain.pem'),
 };
 
 mongoose.Promise = global.Promise;
